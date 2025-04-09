@@ -95,7 +95,7 @@ async function fetchPlaces(token = null) {
   }
 }
 
-// 🆕 Fonction pour afficher dynamiquement les places dans le HTML
+// Fonction pour afficher dynamiquement les places dans le HTML
 function displayPlaces(places) {
   const container = document.getElementById('places-list');
   container.innerHTML = ''; // Vide l'existant
@@ -118,5 +118,22 @@ function displayPlaces(places) {
     `;
 
     container.appendChild(article);
+  });
+
+  document.getElementById('price-filter').addEventListener('change', (event) => {
+    const selectedPrice = event.target.value;
+    const places = document.querySelectorAll('.place-card');
+
+    places.forEach(place => {
+      const price = parseFloat(place.getAttribute('data-price'));
+
+      if (selectedPrice === 'all') {
+        place.style.display = 'block';
+      } else if (price <= selectedPrice) {
+        place.style.display = 'block';
+      } else {
+        place.style.display = 'none';
+      }
+    });
   });
 }

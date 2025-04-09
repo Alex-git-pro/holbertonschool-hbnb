@@ -1,4 +1,4 @@
-from app import create_app  # Assure-toi que tu importes la fonction pour créer l'app
+from app import create_app  # importes la fonction pour créer l'app
 from app.services import facade
 
 # Crée l'application Flask

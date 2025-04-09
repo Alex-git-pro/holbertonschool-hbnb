@@ -1,5 +1,5 @@
 import os
-from datetime import timedelta  # ← nécessaire pour config JWT
+from datetime import timedelta
 
 class Config:
     SECRET_KEY = os.getenv('SECRET_KEY', 'default_secret_key')
@@ -18,7 +18,7 @@ class DevelopmentConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'sqlite:///db.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    # ✅ Config JWT pour éviter les redirections
+    # Config JWT pour éviter les redirections
     JWT_SECRET_KEY = 'super_jwt_secret_key'  # tu peux garder la même que SECRET_KEY si tu veux
     JWT_TOKEN_LOCATION = ['headers']
     JWT_HEADER_NAME = 'Authorization'
