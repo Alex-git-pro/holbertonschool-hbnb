@@ -1,56 +1,86 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hbnb - Liste des Lieux</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="images/icon.png" type="image/png">
+  <meta charset="UTF-8">
+  <title>Places - HBnB</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Header -->
+  <header>
+    <img src="images/logo.png" alt="HBnB Logo" class="logo">
+    <a href="login.html" id="login-link" class="login-button">Login</a>
+  </header>
 
-    <!-- Header -->
-    <header>
-        <div class="header-container">
-            <div class="logo">
-                <a href="index.html"><img src="images/logo.png" alt="Hbnb Logo"></a>
-            </div>
-            <nav>
-                <a class="login-button" href="login.html" id="login-link">Login</a>
-            </nav>
-        </div>
-    </header>
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="login.html">Login</a>
+  </nav>
 
-    <!-- Main content -->
-    <main>
-        <h1>Bienvenue à Hbnb</h1>
+  <!-- Main Content -->
+  <main>
+    <h1>List of Places</h1>
 
-        <!-- Filter Section -->
-        <section id="filter">
-            <h6>Filtrer</h6>
-            <label for="price-filter">Prix maximum :</label>
-            <select id="price-filter">
-                <option value="0">Tous</option>
-                <option value="10">$10</option>
-                <option value="50">$50</option>
-                <option value="100">$100</option>
-            </select>
-        </section>
+    <!-- Filtre de prix -->
+    <label for="price-filter">Filter by Price:</label>
+    <select id="price-filter">
+      <option value="all">All</option>
+      <option value="10">Under $10</option>
+      <option value="50">Under $50</option>
+      <option value="100">Under $100</option>
+    </select>
 
-        <!-- List of places -->
-        <section id="places-list">
-            <h2>LOADING PLACES...</h2>
-            <div class="place_cards">
-                <!-- Les lieux seront peuplés dynamiquement ici -->
-            </div>
-        </section>
-    </main>
+    <!-- Container des cards -->
+    <section id="places-list">
+      <!-- Les places seront ajoutées ici dynamiquement -->
+    </section>
+  </main>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Hbnb. Tous droits réservés.</p>
-    </footer>
+  <!-- Footer -->
+  <footer>
+    <p>All rights reserved © 2025</p>
+  </footer>
 
-    <script src="scripts.js"></script>
+  <script src="scripts.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - HBnB</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <img src="images/logo.png" alt="HBnB Logo" class="logo">
+    <a href="login.html" class="login-button">Login</a>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="login.html">Login</a>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <h1>Login</h1>
+    <form id="login-form">
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+    <p id="error-message" style="color: red; display: none;">Login failed. Please check your credentials.</p>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>All rights reserved © 2025</p>
+  </footer>
+
+  <script src="scripts.js"></script>
 </body>
 </html>

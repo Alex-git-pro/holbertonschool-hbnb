@@ -1,67 +1,53 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Détails du Lieu - HBNB</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="images/icon.png">
+  <meta charset="UTF-8">
+  <title>Place Details - HBnB</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <a href="index.html"><img class="logo" src="images/logo.png" alt="HBNB Logo"></a>
-            <nav>
-                <a class="login-button" href="login.html" id="login-link">Connexion</a>
-            </nav>
-        </div>
-    </header>
-    
-    <main>
-        <section id="place-details" class="place_details">
-            <h1>LOADING PLACE...</h1>
-            <!-- Les détails du lieu seront chargés dynamiquement -->
-        </section>
-        
-        <section id="reviews">
-            <h2>AVIS</h2>
-            <div class="reviews-container">
-                <div class="review-card">
-                    <div class="review-header">
-                        <img src="images/ane.avif" alt="Reviewer" class="reviewer-img">
-                        <div class="reviewer-info">
-                            <h3 class="reviewer-name">Donkey</h3>
-                            <p class="review-date">2 avril 2025</p>
-                        </div>
-                    </div>
-                    <div class="review-content">
-                        <p>Ce marais est absolument parfait !</p>
-                    </div>
-                </div>
-                <!-- Les avis seront chargés dynamiquement -->
-            </div>
-        </section>
-        
-        <section id="add-review">
-            <form id="review-form">
-                <h2>Ajouter un Avis</h2>
-                <label for="review">Votre Avis :</label>
-                <textarea id="review" name="review" required></textarea>
-                
-                <label for="rating">Évaluation :</label>
-                <select id="rating" name="rating" required>
-                    <option value="1">1 Étoile</option>
-                    <option value="2">2 Étoiles</option>
-                    <option value="3">3 Étoiles</option>
-                    <option value="4">4 Étoiles</option>
-                    <option value="5">5 Étoiles</option>
-                </select>
-                
-                <button type="submit">Soumettre l'Avis</button>
-            </form>
-        </section>
-    </main>
-    
-    <script src="scripts.js"></script>
+  <!-- Header -->
+  <header>
+    <img src="images/logo.png" alt="HBnB Logo" class="logo">
+    <a href="login.html" class="login-button">Login</a>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="login.html">Login</a>
+  </nav>
+
+  <!-- Main content -->
+  <main>
+    <h1>Place Details</h1>
+
+    <div class="place-details">
+      <div class="place-info">
+        <h2>Bangkok Central Loft</h2>
+        <p>Host: Alice</p>
+        <p>Price: $45 per night</p>
+        <p>Description: A cozy modern loft in the heart of Bangkok.</p>
+        <p>Amenities: Wi-Fi, AC, Kitchen</p>
+      </div>
+
+      <h3>Reviews</h3>
+      <div class="review-card">
+        <p>"Super endroit, très propre !"</p>
+        <small>par Bob</small>
+        <p>⭐️⭐️⭐️⭐️⭐️</p>
+      </div>
+
+      <!-- Ce lien ne s'affichera que si l'utilisateur est connecté -->
+      <a href="add_review.html">Add a Review</a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>All rights reserved © 2025</p>
+  </footer>
+
+  <script src="scripts.js"></script>
 </body>
 </html>
