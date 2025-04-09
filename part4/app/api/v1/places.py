@@ -25,7 +25,7 @@ place_model = api.model('Place', {
     'amenities': fields.List(fields.String, required=True, description="List of amenities ID's")
 })
 
-@api.route('/')
+@api.route('')
 class PlaceList(Resource):
     @jwt_required()
     @api.expect(place_model)
