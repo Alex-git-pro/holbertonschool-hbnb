@@ -20,32 +20,39 @@
 
   <!-- Main content -->
   <main>
-    <h1>Place Details</h1>
-
-    <div class="place-details">
+    <section class="place-details">
+      <h1>Bangkok Central Loft</h1>
       <div class="place-info">
-        <h2>Bangkok Central Loft</h2>
-        <p>Host: Alice</p>
-        <p>Price: $45 per night</p>
-        <p>Description: A cozy modern loft in the heart of Bangkok.</p>
-        <p>Amenities: Wi-Fi, AC, Kitchen</p>
+        <p><strong>Host:</strong> Alice</p>
+        <p><strong>Price:</strong> $45 per night</p>
+        <p><strong>Description:</strong> A cozy modern loft in the heart of Bangkok.</p>
+        <p><strong>Amenities:</strong></p>
+        <ul>
+          <li><img src="images/icon_wifi.png" alt="Wi-Fi"> Wi-Fi</li>
+          <li><img src="images/icon_bed.png" alt="Bed"> 1 Bed</li>
+          <li><img src="images/icon_bath.png" alt="Bath"> 1 Bathroom</li>
+        </ul>
       </div>
+    </section>
 
-      <h3>Reviews</h3>
-      <div class="review-card">
-        <p>"Super endroit, très propre !"</p>
-        <small>par Bob</small>
-        <p>⭐️⭐️⭐️⭐️⭐️</p>
-      </div>
+    <section id="reviews">
+      <h2>Reviews</h2>
 
-      <!-- Ce lien ne s'affichera que si l'utilisateur est connecté -->
+      <article class="review-card">
+        <p><strong>Bob:</strong> “Super endroit, très propre !”</p>
+        <p>Rating: ⭐️⭐️⭐️⭐️⭐️</p>
+      </article>
+    </section>
+
+    <!-- Ce lien ne s'affichera que si l'utilisateur est connecté -->
+    <div id="add-review-button">
       <a href="add_review.html">Add a Review</a>
     </div>
   </main>
 
   <!-- Footer -->
   <footer>
-    <p>All rights reserved © 2025</p>
+    <p>© 2025 HBnB. All rights reserved.</p>
   </footer>
 
   <script src="scripts.js"></script>

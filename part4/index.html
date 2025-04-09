@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Places - HBnB</title>
+  <title>List of Places - HBnB</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -22,63 +22,33 @@
   <main>
     <h1>List of Places</h1>
 
-    <!-- Filtre de prix -->
-    <label for="price-filter">Filter by Price:</label>
-    <select id="price-filter">
-      <option value="all">All</option>
-      <option value="10">Under $10</option>
-      <option value="50">Under $50</option>
-      <option value="100">Under $100</option>
-    </select>
+    <!-- Filtres -->
+    <div id="filters">
+      <label for="price-filter">Filter by Price:</label>
+      <select id="price-filter">
+        <option value="all">All</option>
+        <option value="10">Under $10</option>
+        <option value="50">Under $50</option>
+        <option value="100">Under $100</option>
+      </select>
+    </div>
 
-    <!-- Container des cards -->
+    <!-- Liste des places -->
     <section id="places-list">
-      <!-- Les places seront ajoutées ici dynamiquement -->
+      <!-- Exemple de carte de place -->
+      <article class="place-card">
+        <h2>Cozy Beach House</h2>
+        <p>Price per night: $80</p>
+        <button class="details-button" onclick="window.location.href='place.html'">View Details</button>
+      </article>
+
+      <!-- Les autres cartes seront ajoutées dynamiquement avec JS -->
     </section>
   </main>
 
   <!-- Footer -->
   <footer>
-    <p>All rights reserved © 2025</p>
-  </footer>
-
-  <script src="scripts.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Login - HBnB</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <!-- Header -->
-  <header>
-    <img src="images/logo.png" alt="HBnB Logo" class="logo">
-    <a href="login.html" class="login-button">Login</a>
-  </header>
-
-  <!-- Navigation -->
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="login.html">Login</a>
-  </nav>
-
-  <!-- Main Content -->
-  <main>
-    <h1>Login</h1>
-    <form id="login-form">
-      <input type="email" name="email" placeholder="Email" required>
-      <input type="password" name="password" placeholder="Password" required>
-      <button type="submit">Login</button>
-    </form>
-    <p id="error-message" style="color: red; display: none;">Login failed. Please check your credentials.</p>
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <p>All rights reserved © 2025</p>
+    <p>© 2025 HBnB. All rights reserved.</p>
   </footer>
 
   <script src="scripts.js"></script>
