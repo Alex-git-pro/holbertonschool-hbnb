@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Review - HBNB</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <img src="images/logo.png" alt="Logo" class="logo">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="login.html" class="login-button">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="add-review">
+            <h2>Ajoutez votre avis</h2>
+            <form id="review-form">
+                <label for="review-text">Avis :</label>
+                <textarea id="review-text" name="review" rows="5" required></textarea>
+
+                <label for="review-rating">Évaluation :</label>
+                <select id="review-rating" name="rating" required>
+                    <option value="">Sélectionnez une note</option>
+                    <option value="1">1 étoile</option>
+                    <option value="2">2 étoiles</option>
+                    <option value="3">3 étoiles</option>
+                    <option value="4">4 étoiles</option>
+                    <option value="5">5 étoiles</option>
+                </select>
+
+                <button type="submit" class="add-review-button">Soumettre l'avis</button>
+            </form>
+            <p id="error-message" style="color: red; display: none;"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 HBNB. Tous droits réservés.</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

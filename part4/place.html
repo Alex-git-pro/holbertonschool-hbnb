@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails du Lieu - HBNB</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="images/icon.png">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html"><img class="logo" src="images/logo.png" alt="HBNB Logo"></a>
+            <nav>
+                <a class="login-button" href="login.html" id="login-link">Connexion</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <section id="place-details" class="place_details">
+            <h1>LOADING PLACE...</h1>
+            <!-- Les détails du lieu seront chargés dynamiquement -->
+        </section>
+        
+        <section id="reviews">
+            <h2>AVIS</h2>
+            <div class="reviews-container">
+                <div class="review-card">
+                    <div class="review-header">
+                        <img src="images/ane.avif" alt="Reviewer" class="reviewer-img">
+                        <div class="reviewer-info">
+                            <h3 class="reviewer-name">Donkey</h3>
+                            <p class="review-date">2 avril 2025</p>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>Ce marais est absolument parfait !</p>
+                    </div>
+                </div>
+                <!-- Les avis seront chargés dynamiquement -->
+            </div>
+        </section>
+        
+        <section id="add-review">
+            <form id="review-form">
+                <h2>Ajouter un Avis</h2>
+                <label for="review">Votre Avis :</label>
+                <textarea id="review" name="review" required></textarea>
+                
+                <label for="rating">Évaluation :</label>
+                <select id="rating" name="rating" required>
+                    <option value="1">1 Étoile</option>
+                    <option value="2">2 Étoiles</option>
+                    <option value="3">3 Étoiles</option>
+                    <option value="4">4 Étoiles</option>
+                    <option value="5">5 Étoiles</option>
+                </select>
+                
+                <button type="submit">Soumettre l'Avis</button>
+            </form>
+        </section>
+    </main>
+    
+    <script src="scripts.js"></script>
+</body>
+</html>

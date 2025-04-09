@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hbnb - Liste des Lieux</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="images/icon.png" type="image/png">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.png" alt="Hbnb Logo"></a>
+            </div>
+            <nav>
+                <a class="login-button" href="login.html" id="login-link">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main>
+        <h1>Bienvenue à Hbnb</h1>
+
+        <!-- Filter Section -->
+        <section id="filter">
+            <h6>Filtrer</h6>
+            <label for="price-filter">Prix maximum :</label>
+            <select id="price-filter">
+                <option value="0">Tous</option>
+                <option value="10">$10</option>
+                <option value="50">$50</option>
+                <option value="100">$100</option>
+            </select>
+        </section>
+
+        <!-- List of places -->
+        <section id="places-list">
+            <h2>LOADING PLACES...</h2>
+            <div class="place_cards">
+                <!-- Les lieux seront peuplés dynamiquement ici -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Hbnb. Tous droits réservés.</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
