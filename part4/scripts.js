@@ -89,8 +89,34 @@ async function fetchPlaces(token = null) {
     const data = await response.json();
     console.log('📦 Places récupérées :', data);
 
-    // Prochaine étape : displayPlaces(data)
+    displayPlaces(data);
   } catch (error) {
     console.error('❌ Erreur fetchPlaces :', error);
   }
+}
+
+// 🆕 Fonction pour afficher dynamiquement les places dans le HTML
+function displayPlaces(places) {
+  const container = document.getElementById('places-list');
+  container.innerHTML = ''; // Vide l'existant
+
+  if (places.length === 0) {
+    container.innerHTML = '<p>Aucune place disponible.</p>';
+    return;
+  }
+
+  places.forEach(place => {
+    const article = document.createElement('article');
+    article.classList.add('place-card');
+    article.setAttribute('data-price', place.price);
+
+    article.innerHTML = `
+      <h2>${place.title}</h2>
+      <p>${place.description || ''}</p>
+      <p>Price per night: $${place.price}</p>
+      <button class="details-button" onclick="window.location.href='place.html?id=${place.id}'">View Details</button>
+    `;
+
+    container.appendChild(article);
+  });
 }
