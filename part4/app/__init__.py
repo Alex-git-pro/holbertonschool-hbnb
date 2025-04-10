@@ -13,12 +13,12 @@ def create_app(config_class="config.DevelopmentConfig"):
     app = Flask(__name__)
     app.config.from_object(config_class)
 
-    # ✅ CORS configuré correctement pour l'API + JWT
+    # CORS configuré correctement pour l'API + JWT
     CORS(app, resources={r"/api/*": {"origins": "http://localhost:5500"}},
          supports_credentials=True,
          allow_headers=["Content-Type", "Authorization"])
 
-    # ✅ Swagger JWT Authorization
+    #  Swagger JWT Authorization
     authorizations = {
         'Bearer': {
             'type': 'apiKey',
@@ -28,7 +28,7 @@ def create_app(config_class="config.DevelopmentConfig"):
         }
     }
 
-    # ✅ Initialisation de Swagger avec l’auth
+    #  Initialisation de Swagger avec l’auth
     api = Api(
         app,
         version='1.0',
