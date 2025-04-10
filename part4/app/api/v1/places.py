@@ -1,3 +1,4 @@
+from flask import jsonify
 from flask_restx import Namespace, Resource, fields
 from flask_jwt_extended import jwt_required, get_jwt, get_jwt_identity
 from app.services import facade
@@ -25,35 +26,16 @@ place_model = api.model('Place', {
     'amenities': fields.List(fields.String, required=True, description="List of amenities ID's")
 })
 
-@api.route('')
-@api.route('/')
-
-class PlaceList(Resource):
-    @jwt_required()
-    @api.expect(place_model)
-    @api.response(201, 'Place successfully created')
-    @api.response(400, 'Invalid input data')
-    def post(self):
-        """Register a new place"""
-        place_data = api.payload
-        sub = get_jwt_identity()
-        place_data['owner_id'] = sub
-        print("in")
-        try:
-            new_place = facade.create_place(place_data)
-            return new_place.to_dict(), 201
-        except Exception as e:
-            return {'error': str(e)}, 400
-
-    @api.response(200, 'List of places retrieved successfully')
-    def get(self):
-        """Retrieve a list of all places"""
-        places = facade.get_all_places()
-        return [place.to_dict() for place in places], 200
-
-
+# Route OPTIONS pour gérer les demandes de pré-vol CORS
 @api.route('/<place_id>')
 class PlaceResource(Resource):
+    def options(self, place_id):
+        response = jsonify({})
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
+        response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE'
+        return response
+
     @api.response(200, 'Place details retrieved successfully')
     @api.response(404, 'Place not found')
     def get(self, place_id):
@@ -61,7 +43,7 @@ class PlaceResource(Resource):
         place = facade.get_place(place_id)
         if not place:
             return {'error': 'Place not found'}, 404
-        return place.to_dict_list(), 200
+        return place.to_dict(), 200
 
     @jwt_required()
     @api.expect(place_model)
@@ -101,38 +83,34 @@ class PlaceResource(Resource):
         except Exception as e:
             return {'error': str(e)}, 400
 
+# Ajout d'une route OPTIONS pour la route principale
+@api.route('')
+@api.route('/')
+class PlaceList(Resource):
+    def options(self):
+        response = jsonify({})
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
+        response.headers['Access-Control-Allow-Methods'] = 'GET, POST'
+        return response
 
-@api.route('/<place_id>/amenities')
-class PlaceAmenities(Resource):
-    @api.expect(amenity_model)
-    @api.response(200, 'Amenities added successfully')
-    @api.response(404, 'Place not found')
+    @jwt_required()
+    @api.expect(place_model)
+    @api.response(201, 'Place successfully created')
     @api.response(400, 'Invalid input data')
-    def post(self, place_id):
-        amenities_data = api.payload
-        if not amenities_data or len(amenities_data) == 0:
-            return {'error': 'Invalid input data'}, 400
-        
-        place = facade.get_place(place_id)
-        if not place:
-            return {'error': 'Place not found'}, 404
-        
-        for amenity in amenities_data:
-            a = facade.get_amenity(amenity['id'])
-            if not a:
-                return {'error': 'Invalid input data'}, 400
-        
-        for amenity in amenities_data:
-            place.add_amenity(amenity)
-        return {'message': 'Amenities added successfully'}, 200
+    def post(self):
+        """Register a new place"""
+        place_data = api.payload
+        sub = get_jwt_identity()
+        place_data['owner_id'] = sub
+        try:
+            new_place = facade.create_place(place_data)
+            return new_place.to_dict(), 201
+        except Exception as e:
+            return {'error': str(e)}, 400
 
-@api.route('/<place_id>/reviews/')
-class PlaceReviewList(Resource):
-    @api.response(200, 'List of reviews for the place retrieved successfully')
-    @api.response(404, 'Place not found')
-    def get(self, place_id):
-        """Get all reviews for a specific place"""
-        place = facade.get_place(place_id)
-        if not place:
-            return {'error': 'Place not found'}, 404
-        return [review.to_dict() for review in place.reviews], 200
+    @api.response(200, 'List of places retrieved successfully')
+    def get(self):
+        """Retrieve a list of all places"""
+        places = facade.get_all_places()
+        return [place.to_dict() for place in places], 200

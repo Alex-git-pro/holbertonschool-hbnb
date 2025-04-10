@@ -16,7 +16,7 @@ def create_app(config_class="config.DevelopmentConfig"):
     # CORS configuré correctement pour l'API + JWT
     CORS(app, resources={r"/api/*": {"origins": "http://localhost:5500"}},
          supports_credentials=True,
-         allow_headers=["Content-Type", "Authorization"])
+         allow_headers=["Content-Type", "Authorization", "Access-Control-Allow-Origin"])
 
     #  Swagger JWT Authorization
     authorizations = {

@@ -9,43 +9,31 @@
   <!-- Header -->
   <header>
     <img src="images/logo.png" alt="HBnB Logo" class="logo">
-    <a href="login.html" class="login-button">Login</a>
+    <!-- Button will hide if the user is authenticated -->
+    <a href="login.html" id="login-link" class="login-button">Login</a>
   </header>
 
   <!-- Navigation -->
   <nav>
     <a href="index.html">Home</a>
-    <a href="login.html">Login</a>
+    <a href="login.html" id="login-link">Login</a>
   </nav>
 
   <!-- Main content -->
   <main>
-    <section class="place-details">
-      <h1>Bangkok Central Loft</h1>
-      <div class="place-info">
-        <p><strong>Host:</strong> Alice</p>
-        <p><strong>Price:</strong> $45 per night</p>
-        <p><strong>Description:</strong> A cozy modern loft in the heart of Bangkok.</p>
-        <p><strong>Amenities:</strong></p>
-        <ul>
-          <li><img src="images/icon_wifi.png" alt="Wi-Fi"> Wi-Fi</li>
-          <li><img src="images/icon_bed.png" alt="Bed"> 1 Bed</li>
-          <li><img src="images/icon_bath.png" alt="Bath"> 1 Bathroom</li>
-        </ul>
-      </div>
+    <!-- Section for displaying the place details dynamically -->
+    <section id="place-details">
+      <!-- Details will be populated here by the script -->
     </section>
 
+    <!-- Section for displaying reviews -->
     <section id="reviews">
       <h2>Reviews</h2>
-
-      <article class="review-card">
-        <p><strong>Bob:</strong> “Super endroit, très propre !”</p>
-        <p>Rating: ⭐️⭐️⭐️⭐️⭐️</p>
-      </article>
+      <!-- Reviews will be dynamically added here -->
     </section>
 
-    <!-- Ce lien ne s'affichera que si l'utilisateur est connecté -->
-    <div id="add-review-button">
+    <!-- Add Review Button (Visible only if the user is authenticated) -->
+    <div id="add-review-button" style="display: none;">
       <a href="add_review.html">Add a Review</a>
     </div>
   </main>
