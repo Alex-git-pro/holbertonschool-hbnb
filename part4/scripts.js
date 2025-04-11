@@ -5,6 +5,15 @@ function getCookie(name) {
   if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
+// Vérifie si l'utilisateur est authentifié (vérification du token JWT)
+function checkAuthentication() {
+  const token = getCookie('token');
+  if (!token) {
+    window.location.href = 'index.html';  // Redirige si l'utilisateur n'est pas authentifié
+  }
+  return token;
+}
+
 // Fonction pour récupérer l'ID de la place dans l'URL
 function getPlaceIdFromURL() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -70,6 +79,90 @@ document.addEventListener('DOMContentLoaded', () => {
     console.error('Place ID est manquant');
     // Gérer le cas où l'ID de la place est manquant
   }
+
+  // Ajouter la soumission du formulaire d'avis ici
+  const reviewForm = document.getElementById('review-form');
+  const messageDiv = document.getElementById('message');
+
+  if (reviewForm) {
+    reviewForm.addEventListener('submit', async (event) => {
+      event.preventDefault();  // Empêche le comportement par défaut de soumission du formulaire
+
+      const reviewText = document.getElementById('review-text').value;
+
+      if (reviewText.trim() === "") {
+        messageDiv.textContent = 'Please write a review before submitting.';
+        return;
+      }
+
+      const response = await submitReview(token, placeId, reviewText);
+      handleResponse(response);  // Gère la réponse de l'API
+    });
+  }
+});
+
+// Fonction pour envoyer un avis via AJAX (Fetch API)
+async function submitReview(token, placeId, reviewText) {
+  try {
+    const response = await fetch(`http://127.0.0.1:5000/api/v1/places/${placeId}/reviews`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`, // Le token JWT pour l'authentification
+      },
+      body: JSON.stringify({
+        text: reviewText,      // Le texte de l'avis
+        place_id: placeId,     // L'ID de la place
+      }),
+    });
+
+    // Retourner la réponse pour un traitement ultérieur
+    return response;
+  } catch (error) {
+    console.error('Error:', error);
+    return { ok: false, statusText: 'Network error' };
+  }
+}
+
+// Fonction pour gérer la réponse après soumission de l'avis
+function handleResponse(response) {
+  const messageDiv = document.getElementById('message');
+  if (response.ok) {
+    messageDiv.textContent = 'Review submitted successfully!';
+    messageDiv.style.color = 'green';
+    document.getElementById('review-form').reset();  // Réinitialiser le formulaire après succès
+  } else {
+    messageDiv.textContent = `Failed to submit review: ${response.statusText}`;
+    messageDiv.style.color = 'red';
+  }
+}
+
+// Ajouter un gestionnaire d'événement pour soumettre le formulaire
+document.addEventListener('DOMContentLoaded', () => {
+  const reviewForm = document.getElementById('review-form');
+  const messageDiv = document.getElementById('message');
+
+  if (reviewForm) {
+    reviewForm.addEventListener('submit', async (event) => {
+      event.preventDefault();  // Empêche la soumission classique du formulaire
+
+      const reviewText = document.getElementById('review-text').value;  // Récupérer le texte de l'avis
+
+      // Vérifier que le texte de l'avis n'est pas vide
+      if (reviewText.trim() === "") {
+        messageDiv.textContent = 'Please write a review before submitting.';
+        return;
+      }
+
+      // Récupérer l'ID de la place depuis l'URL
+      const placeId = getPlaceIdFromURL();
+      const token = getCookie('token');
+
+      // Soumettre l'avis
+      const response = await submitReview(token, placeId, reviewText);
+      handleResponse(response);  // Gérer la réponse de l'API
+    });
+  }
 });
 
 // Fonction pour vérifier l'authentification et gérer l'affichage du lien login
@@ -110,7 +203,7 @@ async function fetchPlaces(token = null) {
     const data = await response.json();
     console.log('📦 Places récupérées :', data);
 
-    displayPlaces(data);
+    displayPlaces(data); // Affiche les places
   } catch (error) {
     console.error('❌ Erreur fetchPlaces :', error);
   }
@@ -158,7 +251,7 @@ function displayPlaceDetails(place) {
 
   const amenitiesList = document.createElement('ul');
   amenitiesList.innerHTML = `<strong>Amenities:</strong>`;
-  
+
   // Vérification si amenities est un tableau avant d'utiliser forEach
   if (Array.isArray(place.amenities) && place.amenities.length > 0) {
     place.amenities.forEach((amenity) => {
@@ -186,7 +279,6 @@ function displayPlaceDetails(place) {
     addReviewButton.style.display = 'none'; // Cache le bouton si l'utilisateur n'est pas authentifié
   }
 }
-
 
 // Fonction pour afficher dynamiquement les places dans le HTML
 function displayPlaces(places) {

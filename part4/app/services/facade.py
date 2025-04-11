@@ -79,6 +79,14 @@ class HBnBFacade:
 
     def update_place(self, place_id, place_data):
         self.place_repo.update(place_id, place_data)
+    def delete_place(self, place_id):
+        """Supprimer une place en utilisant l'ID"""
+        place = self.place_repo.get(place_id)  # On récupère la place par son ID
+        if not place:
+            raise ValueError("Place not found")  # Lancer une erreur si la place n'existe pas
+        
+        self.place_repo.delete(place_id)  # Appeler le delete du repository pour supprimer la place
+        return place  # Retourner la place supprimée, si nécessaire
 
     # REVIEWS
     def create_review(self, review_data):
