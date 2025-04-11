@@ -113,9 +113,14 @@ async function submitReview(token, placeId, reviewText) {
       body: JSON.stringify({
         text: reviewText,      // Le texte de l'avis
         place_id: placeId,     // L'ID de la place
+        user_id: "user123",
       }),
     });
 
+    if (!response.ok) {
+      throw new Error('Failed to submit review');
+    }
+  
     // Retourner la réponse pour un traitement ultérieur
     return response;
   } catch (error) {
@@ -201,11 +206,11 @@ async function fetchPlaces(token = null) {
     }
 
     const data = await response.json();
-    console.log('📦 Places récupérées :', data);
+    console.log('Places récupérées :', data);
 
     displayPlaces(data); // Affiche les places
   } catch (error) {
-    console.error('❌ Erreur fetchPlaces :', error);
+    console.error('Erreur fetchPlaces :', error);
   }
 }
 
